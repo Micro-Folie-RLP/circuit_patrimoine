@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Église – Étape lieu 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background:#fffdf0; }
+    img { max-width:100%; border-radius:10px; margin:15px 0; }
+    button { padding: 10px 20px; font-size:1.1em; border-radius:25px; border:none; background:#2e5c8a; color:#fff; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>Église Notre-Dame de Canlache</h1>
+  <p>Vous êtes à l’église du village.</p>
+
+  <img src="IMAGE_EGLISE.jpg" alt="Église Notre-Dame de Canlache">
+
+  <p>Prochaine destination : un puits ancien, au lieu-dit des Courraouts…</p>
+
+  <p>Quand vous êtes prêt, cliquez pour passer à la question suivante :</p>
+  <button onclick="goNext()">Question suivante</button>
+
+  <script>
+    function goNext() {
+      window.location.href = 'question3.html';
+    }
+  </script>
+</body>
+</html>
