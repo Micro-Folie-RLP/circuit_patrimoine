@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background: #f0f8ff; }
+    h1 { color:#2e5c8a; }
+    .reponse { display:block; margin:10px auto; padding:10px 20px; border-radius:25px; border:none; cursor:pointer; }
+    .bonne { background:#4CAF50; color:#fff; }
+    .mauvaise { background:#f44336; color:#fff; }
+  </style>
+</head>
+<body>
+  <h1>Question 4</h1>
+  <p>À quoi servaient historiquement les puits comme celui des Courraouts ?</p>
+
+  <button class="reponse bonne" onclick="answerQuestion(true)">À puiser l’eau pour le village</button>
+  <button class="reponse mauvaise" onclick="answerQuestion(false)">À stocker le grain</button>
+  <button class="reponse mauvaise" onclick="answerQuestion(false)">À enfermer les animaux</button>
+
+  <script>
+    function answerQuestion(isCorrect) {
+      let good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
+      let bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+
+      if (isCorrect) {
+        good++;
+        localStorage.setItem('scoreGood', String(good));
+      } else {
+        bad++;
+        localStorage.setItem('scoreBad', String(bad));
+      }
+
+      window.location.href = 'lieu4_quatre_puits.html';
+    }
+  </script>
+</body>
+</html>
