@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chasse au trésor – Départ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background: #f0f8ff; }
+    h1 { color: #2e5c8a; }
+    input, button { padding: 10px; margin: 10px 0; font-size: 1em; }
+    .reponse { display:block; margin: 10px auto; padding: 10px 20px; border-radius: 25px; border:none; cursor:pointer; }
+    .bonne { background:#4CAF50; color:#fff; }
+    .mauvaise { background:#f44336; color:#fff; }
+  </style>
+</head>
+<body>
+  <h1>Chasse au trésor – Roquefort-Les-Pins</h1>
+  <p>Médiathèque – point de départ</p>
+
+  <div>
+    <p>Entrez votre prénom ou le nom de votre équipe :</p>
+    <input type="text" id="playerName" placeholder="Votre nom">
+  </div>
+
+  <hr>
+
+  <h2>Question 1</h2>
+  <p>Question : Quelle abbaye a possédé le fief de Roquefort au XIe siècle ?</p>
+
+  <button class="reponse bonne" onclick="answerQuestion(true)">Abbaye de Lérins</button>
+  <button class="reponse mauvaise" onclick="answerQuestion(false)">Abbaye de Grasse</button>
+
+  <script>
+    function initGame() {
+      localStorage.setItem('scoreGood', '0');
+      localStorage.setItem('scoreBad', '0');
+    }
+
+    function answerQuestion(isCorrect) {
+      const nameInput = document.getElementById('playerName').value.trim();
+      if (!nameInput) {
+        alert('Merci d’indiquer votre nom avant de commencer.');
+        return;
+      }
+      localStorage.setItem('playerName', nameInput);
+
+      let good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
+      let bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+
+      if (isCorrect) {
+        good++;
+        localStorage.setItem('scoreGood', String(good));
+      } else {
+        bad++;
+        localStorage.setItem('scoreBad', String(bad));
+      }
+
+      window.location.href = 'lieu1_lavoir.html';
+    }
+
+    initGame();
+  </script>
+</body>
+</html>
