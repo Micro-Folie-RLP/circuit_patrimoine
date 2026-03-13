@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 6</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background: #f0f8ff; }
+    h1 { color:#2e5c8a; }
+    .reponse { display:block; margin:10px auto; padding:10px 20px; border-radius:25px; border:none; cursor:pointer; }
+    .bonne { background:#4CAF50; color:#fff; }
+    .mauvaise { background:#f44336; color:#fff; }
+  </style>
+</head>
+<body>
+  <h1>Question 6</h1>
+  <p>À quoi servait principalement le four des Terres Blanches ?</p>
+
+  <button class="reponse bonne" onclick="answerQuestion(true)">À cuire le pain et les aliments</button>
+  <button class="reponse mauvaise" onclick="answerQuestion(false)">À fabriquer des briques</button>
+  <button class="reponse mauvaise" onclick="answerQuestion(false)">À sécher le linge</button>
+
+  <script>
+    function answerQuestion(isCorrect) {
+      let good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
+      let bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+
+      if (isCorrect) {
+        good++;
+        localStorage.setItem('scoreGood', String(good));
+      } else {
+        bad++;
+        localStorage.setItem('scoreBad', String(bad));
+      }
+
+      window.location.href = 'lieu6_puits_gagai.html';
+    }
+  </script>
+</body>
+</html>
