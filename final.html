@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Résultats – Chasse au trésor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background:#e8f4fd; }
+    h1 { color:#2e5c8a; }
+  </style>
+</head>
+<body>
+  <h1>Résultats</h1>
+  <p id="message"></p>
+  <p>Revenez à la médiathèque pour valider votre participation et, peut-être, récupérer une petite récompense…</p>
+
+  <script>
+    function showResults() {
+      const name = localStorage.getItem('playerName') || 'Participant';
+      const good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
+      const bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+      const note = good + '/10';
+
+      const msg = `${name}, vous avez répondu correctement à ${good} question(s) `
+                + `et fait ${bad} erreur(s). Votre note est : ${note}.`;
+
+      document.getElementById('message').textContent = msg;
+    }
+
+    showResults();
+  </script>
+</body>
+</html>
