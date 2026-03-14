@@ -5,25 +5,68 @@
   <title>Question 4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background: #f0f8ff; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 20px auto;
+      text-align: center;
+      padding: 20px;
+      background: #f0f8ff;
+    }
     h1 { color:#2e5c8a; }
-    .reponse { display:block; margin:10px auto; padding:10px 20px; border-radius:25px; border:none; cursor:pointer; }
-    .bonne { background:#4CAF50; color:#fff; }
-    .mauvaise { background:#f44336; color:#fff; }
+    .reponse {
+      display:block;
+      margin:10px auto;
+      padding:10px 20px;
+      border-radius:25px;
+      border:none;
+      cursor:pointer;
+      background:#4CAF50;
+      color:#fff;
+      font-size:1em;
+    }
   </style>
 </head>
 <body>
   <h1>Question 4</h1>
-  <p>À quoi servaient historiquement les puits comme celui des Courraouts ?</p>
+  <p>À quoi servaient historiquement les puits comme celui des Courraouts&nbsp;?</p>
 
-  <button class="reponse bonne" onclick="answerQuestion(true)">À puiser l’eau pour le village</button>
-  <button class="reponse mauvaise" onclick="answerQuestion(false)">À stocker le grain</button>
-  <button class="reponse mauvaise" onclick="answerQuestion(false)">À enfermer les animaux</button>
+  <div id="answers"></div>
 
   <script>
+    const answers = [
+      { text: 'À puiser l’eau pour le village', isCorrect: true },
+      { text: 'À stocker le grain',             isCorrect: false },
+      { text: 'À enfermer les animaux',         isCorrect: false }
+    ];
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function renderAnswers() {
+      const container = document.getElementById('answers');
+      container.innerHTML = '';
+      const shuffled = shuffle(answers.slice());
+
+      shuffled.forEach(answer => {
+        const btn = document.createElement('button');
+        btn.className = 'reponse';
+        btn.textContent = answer.text;
+        btn.onclick = function () {
+          answerQuestion(answer.isCorrect);
+        };
+        container.appendChild(btn);
+      });
+    }
+
     function answerQuestion(isCorrect) {
       let good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
-      let bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+      let bad  = parseInt(localStorage.getItem('scoreBad')  || '0', 10);
 
       if (isCorrect) {
         good++;
@@ -35,6 +78,8 @@
 
       window.location.href = 'lieu4_quatre_puits.html';
     }
+
+    renderAnswers();
   </script>
 </body>
 </html>
