@@ -5,29 +5,44 @@
   <title>Question 2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; text-align: center; padding: 20px; background: #f0f8ff; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 20px auto;
+      text-align: center;
+      padding: 20px;
+      background: #f0f8ff;
+    }
     h1 { color:#2e5c8a; }
-    .reponse { display:block; margin:10px auto; padding:10px 20px; border-radius:25px; border:none; cursor:pointer; }
-    .bonne { background:#4CAF50; color:#fff; }
-    .mauvaise { background:#f44336; color:#fff; }
+    .reponse {
+      display:block;
+      margin:10px auto;
+      padding:10px 20px;
+      border-radius:25px;
+      border:none;
+      cursor:pointer;
+      background:#4CAF50;  /* vert pour toutes les réponses */
+      color:#fff;
+      font-size:1em;
+    }
   </style>
 </head>
 <body>
   <h1>Question 2</h1>
-  <p>Quel type de lieu est le lavoir ?</p>
+  <p>Quel type de lieu est le lavoir&nbsp;?</p>
 
-  <!-- conteneur où les boutons seront générés -->
+  <!-- Les boutons seront générés ici -->
   <div id="answers"></div>
 
   <script>
-    // tableau des réponses : texte + si c'est la bonne ou non
+    // Liste des réponses : une seule bonne
     const answers = [
       { text: 'Un lieu pour laver le linge', isCorrect: true },
-      { text: 'Une maison d’habitation', isCorrect: false },
-      { text: 'Un petit château', isCorrect: false }
+      { text: 'Une maison d’habitation',    isCorrect: false },
+      { text: 'Un petit château',           isCorrect: false }
     ];
 
-    // fonction pour mélanger un tableau (Fisher-Yates shuffle)
+    // Mélange (Fisher–Yates)
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -40,13 +55,13 @@
       const container = document.getElementById('answers');
       container.innerHTML = '';
 
-      const shuffled = shuffle(answers.slice()); // on copie le tableau avant de le mélanger
+      const shuffled = shuffle(answers.slice());
 
       shuffled.forEach(answer => {
         const btn = document.createElement('button');
-        btn.className = 'reponse'; // même style pour toutes les réponses
+        btn.className = 'reponse';
         btn.textContent = answer.text;
-        btn.onclick = function() {
+        btn.onclick = function () {
           answerQuestion(answer.isCorrect);
         };
         container.appendChild(btn);
@@ -55,7 +70,7 @@
 
     function answerQuestion(isCorrect) {
       let good = parseInt(localStorage.getItem('scoreGood') || '0', 10);
-      let bad = parseInt(localStorage.getItem('scoreBad') || '0', 10);
+      let bad  = parseInt(localStorage.getItem('scoreBad')  || '0', 10);
 
       if (isCorrect) {
         good++;
@@ -65,12 +80,11 @@
         localStorage.setItem('scoreBad', String(bad));
       }
 
+      // après la question 2, on va vers la page de l’église
       window.location.href = 'lieu2_eglise.html';
     }
 
-    // on déclenche l’affichage des réponses quand la page se charge
     renderAnswers();
   </script>
 </body>
-
 </html>
